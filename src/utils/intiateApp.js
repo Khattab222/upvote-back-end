@@ -17,6 +17,10 @@ app.use(cors({
 }))
 
 app.use(xss())
+app.get('/',(req,res,next) => {
+  return res.json({message:'welcome to upvote app bt khaled khattab'})
+}
+)
 app.use(`${baseUrl}/auth`,allRoutes.authRouter );
 app.use(`${baseUrl}/product`,allRoutes.productRouter );
 app.use(`${baseUrl}/comment`,allRoutes.commentRouter );
