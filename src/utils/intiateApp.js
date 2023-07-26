@@ -13,7 +13,7 @@ app.use(hpp())
 const port = process.env.PORT || 5000;
 const baseUrl = process.env.BASE_URL;
 app.use(cors({
-    origin:'http://localhost:3000'
+    origin:'https://upvote-front-end.vercel.app/'
 }))
 
 app.use(xss())
