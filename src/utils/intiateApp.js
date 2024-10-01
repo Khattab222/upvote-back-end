@@ -23,7 +23,7 @@ app.use(async (req,res,next) => {
 
   next()
 }
-
+)
 app.use(xss())
 app.get('/',(req,res,next) => {
   return res.json({message:'welcome to upvote app bt khaled khattab'})
