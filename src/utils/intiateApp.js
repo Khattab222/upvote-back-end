@@ -12,9 +12,17 @@ app.use(helmet())
 app.use(hpp())
 const port = process.env.PORT || 5000;
 const baseUrl = process.env.BASE_URL;
-app.use(cors({
-    origin:'*'
-}))
+app.use(async (req,res,next) => {
+    // if (!whitelist.includes(req.header('origin'))) {
+    //    return next(new Error('not allowed by cors',{cause:403})) 
+    // }
+  await res.header('Access-Control-Allow-Origin','*');
+  await res.header('Access-Control-Allow-Headers','*');
+  await res.header('Access-Control-Allow-Private-Network','true');
+  await res.header('Access-Control-Allow-Methods','PUT');
+
+  next()
+}
 
 app.use(xss())
 app.get('/',(req,res,next) => {
