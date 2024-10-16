@@ -15,27 +15,13 @@ export const signup = async (req,res,next) => {
     lastName,
     email,
     password,
+    isConfirmed:true
    
   })
 
-  const token = tokenGenerator({payload:{_id:newUser._id}});
-  if(!token){
-    return next(new Error('token generation fail',{cause:500}))
-  }
-  const confirmationLink = `${req.protocol}://upvote-front-end.vercel.app/auth/confirmLink/${token}`;
-  const message = `<a href=${confirmationLink}>click to confirm </a>`;
-
-  const sentEmail = await sendEmail({
-    to:newUser.email,
-    subject:'confirm your email',
-    message
-  })
-  if(!sentEmail){
-    return next(new Error('email sending fail',{cause:500}))
-  }
 
   await newUser.save();
-  res.status(201).json({message:'sign up success please confirm your account '})
+  res.status(201).json({message:'sign up success'})
 }
 
 
