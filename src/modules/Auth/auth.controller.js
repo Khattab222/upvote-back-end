@@ -22,7 +22,7 @@ export const signup = async (req,res,next) => {
   if(!token){
     return next(new Error('token generation fail',{cause:500}))
   }
-  const confirmationLink = `${req.protocol}://localhost:3000/auth/confirmLink/${token}`;
+  const confirmationLink = `${req.protocol}://upvote-front-end.vercel.app/auth/confirmLink/${token}`;
   const message = `<a href=${confirmationLink}>click to confirm </a>`;
 
   const sentEmail = await sendEmail({
